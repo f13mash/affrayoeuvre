@@ -70,7 +70,7 @@ public class MapManager extends AbstractManager implements Constants {
 	}
 	
 	private void handleBaseTypeEvent(ScannedObjectEvent e) {
-		markMap(e, BASE);
+		//markMap(e, BASE);
 	}
 	
 	private void markMap(ScannedObjectEvent e, int val){
@@ -92,6 +92,24 @@ public class MapManager extends AbstractManager implements Constants {
 		if(robot.mainMap[xInd][yInd].type==WALL)
 			return;
 		robot.mainMap[xInd][yInd].type=val;
+	}
+	
+	public void markMap(double x , double y , int val){
+		
+		int xInd=(int) Math.round(x/MAP_SMALL_BLOCK_SIZE);
+		int yInd=(int) Math.round(y/MAP_SMALL_BLOCK_SIZE);
+		
+		//all the nodes with value above that of the BASE will be of blocking nature .
+		if(val>BASE){
+			robot.mainMap[xInd][yInd].isBlocked=true;
+		}
+		
+		//if the node type is WALL then there's no need to override with a new value
+		if(robot.mainMap[xInd][yInd].type==WALL)
+			return;
+		
+		robot.mainMap[xInd][yInd].type=val;
+		
 	}
 	
 	public void printMap(){

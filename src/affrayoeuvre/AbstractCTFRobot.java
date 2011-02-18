@@ -19,8 +19,10 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 		System.out.println("About to print the map . . .");
 		mapManager.printMap();
 		while(true){
+			setAhead(100);
 			radarManager.doJob();
 			execute();
+			mapManager.printMap();
 		}
 	}
 	
@@ -67,8 +69,23 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 	}
 	
 	public void onScannedObject(ScannedObjectEvent e){
-		if(e.getObjectType().equals("flag"))
-			System.out.println("seen the flag at : "+e.getBearing());
 		mapManager.onScannedObject(e);
 	}
+	
+	public void onHitObstacle(HitObstacleEvent e){
+		if(e.getObstacleType().equals("box")){
+			handleBoxHit(e);
+		}
+		
+	}
+
+	private void handleBoxHit(HitObstacleEvent e) {
+		double degree=getHeading()+e.getBearing();
+		degree=Utilities.AngleToA180(degree);
+		double x=getX()+getWidth()*BOT_AVG_HIT*Math.sin(Math.toRadians(degree));
+		double y=getY()+getWidth()*BOT_AVG_HIT*Math.cos(Math.toRadians(degree));
+		mapManager.markMap(x, y, BOX);
+	}
+	
+	
 }
