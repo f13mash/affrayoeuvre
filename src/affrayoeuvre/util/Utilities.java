@@ -13,4 +13,32 @@ public final class Utilities {
 		return degree;
 	}
 	
+	
+	public static double getAngle(double dx , double dy){
+		
+		
+
+		double deg=Math.toDegrees(Math.atan2(Math.abs(dx) , Math.abs(dy)));
+
+		if(dy>0 && dx <0){
+			deg=-deg;
+		}
+		else
+			if(dy>0 && dx>0){
+				//remains same
+			}
+			else
+				if(dy<0 && dx>0){
+					deg=180-deg;
+					//remains same
+				}
+				else
+					if(dy<0 && dx<0){
+						deg=-180+deg;
+					}
+		return deg;
+		
+
+	}
+
 }

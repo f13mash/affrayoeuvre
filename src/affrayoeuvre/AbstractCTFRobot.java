@@ -1,5 +1,6 @@
 package affrayoeuvre;
 
+import affrayoeuvre.movement.Dijkstra;
 import affrayoeuvre.radar.*;
 import affrayoeuvre.robot.BareRobot;
 import affrayoeuvre.util.*;
@@ -12,9 +13,6 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 	public static MapManager mapManager = null;
 	
 	public void run(){
-		
-
-		
 		initialize();
 		System.out.println("About to print the map . . .");
 		mapManager.printMap();
@@ -23,6 +21,7 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 			radarManager.doJob();
 			execute();
 			mapManager.printMap();
+			
 		}
 	}
 	
@@ -82,8 +81,9 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 	private void handleBoxHit(HitObstacleEvent e) {
 		double degree=getHeading()+e.getBearing();
 		degree=Utilities.AngleToA180(degree);
-		double x=getX()+getWidth()*BOT_AVG_HIT*Math.sin(Math.toRadians(degree));
-		double y=getY()+getWidth()*BOT_AVG_HIT*Math.cos(Math.toRadians(degree));
+		double mostProbableWidth=getWidth()/Math.max(Math.abs(Math.sin(Math.toRadians(e.getBearing()))), Math.abs(Math.cos(Math.toRadians(e.getBearing()))));
+		double x=getX()+mostProbableWidth*Math.sin(Math.toRadians(degree));
+		double y=getY()+mostProbableWidth*Math.cos(Math.toRadians(degree));
 		mapManager.markMap(x, y, BOX);
 	}
 	
