@@ -44,5 +44,62 @@ public interface Constants {
 	public final double PATH_LENGTH_MAX_ALLOWED=4;
 	public final double POWER_REDUCTION_FACTOR=2;
 	
+	/*
+	 * 
+	 * Constants related to AntiGravity Movement
+	 * 
+	 * 
+	 */
+	public static final double FORCE_OBSTACLE=3000;
+	public static final double REDUCTION_OBSTACLE=3;
+	public static final double FORCE_WALL=2;
+	public static final double REDUCTION_WALL=0.80;
+	public static final double FORCE_POINT=1000;
+	public static final double REDUCTION_POINT=1.87;
+	public static final double WALL_ALLOWANCE=50;
 	
+	/*
+	 * 
+	 * Target choosing constants
+	 * 
+	 */
+	public static final double TARGET_MAX_DISTANCE=600;
+	public static final double TARGET_WEIGHT=3;
+	public static final double AIMING_WEIGHT=1;
+	public static final double GUN_TURN_WEIGHT=1;
+	public static final double TARGETTED_BY_COUNT_WEIGHT=-0.5;	//preferred to -ve
+	
+	
+	
+	/*
+	 * 
+	 * Angle
+	 * 
+	 */
+	public static final double A_360=360;
+	public static final double A_180=180;
+	public static final double A_90=90;
+	public static final double A_0=0;
+
+    public static final double  SCAN_ARC                = 45.0;
+    public static final double  HALF_SCAN_ARC           = SCAN_ARC / 2;
+    public static final long    MAX_SCAN_AGE            = 8;
+    public static final long    TARGET_SCAN_AGE            = 8;
+    
+    public static final long TARGET_SHOOT_AGE	=	2;
+    
+    public static final double CLOSE_DISTANCE = 10;
+    
+    public static final double DIFFICULTY_TO_FIRE_POWER=0.25;
+    
+
+    public static final double  MAX_BULLET_SPEED        = 20;
+    public static final double  MAX_BULLET_POWER        = 3.0;
+    public static final double  MIN_BULLET_POWER        = 0.1;
+    
+    public static final double IS_ANGLE_DEGREE_ZERO = 1.5;
+    public static final double IS_DISTANCE_ZERO = 1;
+    
+    public static final double MOVE_DISTANCE=25;
 }
+

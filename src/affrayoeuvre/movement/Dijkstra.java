@@ -22,24 +22,25 @@ public class Dijkstra implements Constants , Movement{
 	ArrayList<Node> path=new ArrayList<Node>();
 
 	@Override
-	public ArrayList<Node> goTowards(AbstractCTFRobot robot, double x, double y ) {
+	public Node[][] goTowards(AbstractCTFRobot robot, double x, double y ) {
 		
 		int xInd=(int) Math.round(x/robot.MAP_LARGE_BLOCK_SIZE);
 		int yInd=(int) Math.round(y/robot.MAP_LARGE_BLOCK_SIZE);
 		//System.out.println("Stage 1 : ( "+xInd+" , "+yInd+" ) , blocked : "+robot.smallMap[xInd][yInd].isBlocked);
-		if(robot.smallMap[xInd][yInd].isBlocked)
+		/*if(robot.smallMap[xInd][yInd].isBlocked)
 			return null;
-		
+		*/
 		Node[][] smallMap=getSmallMapClone(robot.smallMap);
-		path_max=getTriangularDistance(robot, x, y);
-		path_max=Math.ceil(path_max/MAP_LARGE_BLOCK_SIZE);
+		//path_max=getTriangularDistance(robot, x, y);
+		//path_max=Math.ceil(path_max/MAP_LARGE_BLOCK_SIZE);
+		path_max=Double.MAX_VALUE;
 		//path_max=4;
 		//System.out.println("path_max : "+path_max);
 		smallMap[xInd][yInd].weight=0;
 		smallMap[xInd][yInd].parent=9;
 		solveDijsktra(smallMap , xInd , yInd , 0 );
 		printMap(smallMap);
-		return null;
+		return smallMap;
 	}
 	
 	private void solveDijsktra(Node[][] smallMap , int xInd , int yInd , int pathCount){
@@ -137,7 +138,6 @@ public class Dijkstra implements Constants , Movement{
 			
 			//System.out.println("Stage 5 k : "+k+" , , , "+blocked);
 			
-			if(data.node.parent!=9)
 			if(!blocked){
 				int turning=Math.min(Math.abs(node.parent-(k+4)%8), 8-Math.abs(node.parent-(k+4)%8));
 				if(node.parent==9)
@@ -168,7 +168,7 @@ public class Dijkstra implements Constants , Movement{
 
 	@Override
 	//angle and distance from the current bot position
-	public ArrayList<Node> goTowardsForAngle(AbstractCTFRobot robot, double distance, double angle) {
+	public Node[][] goTowardsForAngle(AbstractCTFRobot robot, double distance, double angle) {
 		// TODO Auto-generated method stub
 		double x=robot.getX()+distance*Math.sin(Math.toRadians(angle));
 		double y=robot.getY()+distance*Math.cos(Math.toRadians(angle));

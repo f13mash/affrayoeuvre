@@ -1,6 +1,9 @@
 package affrayoeuvre.util;
 
-public final class Utilities {
+import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
+
+public final class Utilities implements Constants{
 
 	public static double AngleToA180(double degree){
 		while(degree>180){
@@ -30,7 +33,6 @@ public final class Utilities {
 			else
 				if(dy<0 && dx>0){
 					deg=180-deg;
-					//remains same
 				}
 				else
 					if(dy<0 && dx<0){
@@ -40,5 +42,26 @@ public final class Utilities {
 		
 
 	}
+	
+	public static boolean isNearTo(Point2D point1 , Point2D point2){
+		return point1.distance(point2)<CLOSE_DISTANCE;
+	}
+
+
+	public static double getAngle(Point2D pointInit , Point2D pointDest) {
+		return getAngle(pointDest.getX()-pointInit.getX(), pointDest.getY()-pointInit.getY());
+	}
+
+
+    public static double calcBulletSpeed(double firePower) {
+        return (MAX_BULLET_SPEED - (3 * firePower));
+    }
+    
+    public static double getDistance(double dx , double dy){
+    	return Math.sqrt(dx*dx+dy*dy);
+    }
+    public static double getDistance(Point2D point1 , Point2D point2){
+    	return getDistance(point1.getX()-point2.getX(), point1.getY()-point2.getY());
+    }
 
 }

@@ -7,6 +7,6 @@ import affrayoeuvre.node.Node;
 
 public interface Movement{
 
-	ArrayList<Node> goTowards(AbstractCTFRobot robot, double x, double y);
-	ArrayList<Node> goTowardsForAngle(AbstractCTFRobot robot, double distance, double angle);
+	Node[][] goTowards(AbstractCTFRobot robot, double x, double y);
+	Node[][] goTowardsForAngle(AbstractCTFRobot robot, double distance, double angle);
 }
