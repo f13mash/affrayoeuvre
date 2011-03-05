@@ -30,14 +30,14 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 		System.out.println("About to print the map . . .");
 		pnt=getEnemyFlag();
 		mapManager.printMap();
+		//movementManager.goTowards(new Point2D.Double(700 , 550));
 		movementManager.goTowards(getEnemyFlag());
 		while(true){
 			System.out.println("check check");
 			radarManager.doJob();
 			enemyManager.doJob();
 			mapManager.doJob();
-			if(getRoundNum()==0)
-				movementManager.doJob();
+			movementManager.doJob();
 			philosopher.doJob();
 			gunManager.doJob();
 			execute();
@@ -144,7 +144,7 @@ public abstract class AbstractCTFRobot extends BareRobot implements Constants{
 		//turnRight(180);
 		pnt=new Point2D.Double(getOwnBase().getCenterX() , getOwnBase().getCenterY());
 		//stop();
-		//movementManager.goTowards(pnt);
+		movementManager.goTowards(pnt);
 		
 		
 	}

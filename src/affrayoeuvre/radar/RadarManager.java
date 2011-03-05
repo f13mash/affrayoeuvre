@@ -15,7 +15,8 @@ public class RadarManager extends AbstractManager implements Constants{
 
 	public RadarManager(AbstractCTFRobot robot) {
 		super(robot);
-		scanForMap();
+		if(robot.getRoundNum()==0)
+			scanForMap();
 		
 	}
 

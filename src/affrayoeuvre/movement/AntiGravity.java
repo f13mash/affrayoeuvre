@@ -46,7 +46,7 @@ public class AntiGravity implements Constants{
 		
 		
 		
-		
+		System.out.println("antigravity : "+obstacleX+" , "+obstacleY);
 		return new Force(obstacleX, obstacleY);
 		
 	}
@@ -68,9 +68,10 @@ public class AntiGravity implements Constants{
 			yComponent=Math.pow((yGap/WALL_ALLOWANCE) , REDUCTION_WALL)*FORCE_WALL;
 		}
 		
+		xComponent*=(x<robot.getBattleFieldWidth()/2 ? 1:-1);
+		yComponent*=(y<robot.getBattleFieldHeight()/2?1:-1);
 		
-		
-		
+		System.out.println("wallforce : "+xComponent+" , "+yComponent);
 		return new Force(xComponent, yComponent);
 	}
 	
@@ -85,7 +86,7 @@ public class AntiGravity implements Constants{
 		double xComponent=force*dx/distance;
 		double yComponent=force*dy/distance;
 		
-		
+		System.out.println("pointforce : "+xComponent+" , "+yComponent);
 		return new Force(xComponent, yComponent);
 	}
 }

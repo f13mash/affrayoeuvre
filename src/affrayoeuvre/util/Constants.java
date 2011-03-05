@@ -18,7 +18,7 @@ public interface Constants {
 	 * 
 	 */
 	public final double MAP_SMALL_BLOCK_SIZE=30;	//more finer details of the arena . . .
-	public final double MAP_LARGE_BLOCK_SIZE=50;	//larger block size reduce the computation overhead + blocked zones are marked nearly always right
+	public final double MAP_LARGE_BLOCK_SIZE=40;	//larger block size reduce the computation overhead + blocked zones are marked nearly always right
 	public final double MAP_BLOCK_MIN_ALLOWANCE=20;
 	public final double MAP_45_TURN_WEIGHT_FACTOR=0.2;
 	public final int FREE=0;
@@ -50,8 +50,8 @@ public interface Constants {
 	 * 
 	 * 
 	 */
-	public static final double FORCE_OBSTACLE=3000;
-	public static final double REDUCTION_OBSTACLE=3;
+	public static final double FORCE_OBSTACLE=200;
+	public static final double REDUCTION_OBSTACLE=2;
 	public static final double FORCE_WALL=2;
 	public static final double REDUCTION_WALL=0.80;
 	public static final double FORCE_POINT=1000;

@@ -94,8 +94,8 @@ public class MovementManager extends AbstractManager {
 			break;
 		case 9:{
 			System.out.println("set the destination to null : old one "+destination);
-			goAntiGravity(destination);
-			finishingMove(destination);
+			//goAntiGravity(destination);
+			//finishingMove(destination);
 			smallMap=null;
 			destination=null;
 			return;
@@ -105,7 +105,12 @@ public class MovementManager extends AbstractManager {
 		}
 		
 		if(nextStop!=null){
-			goAntiGravity(nextStop);
+			double dis=Utilities.getDistance(destination , new Point2D.Double(robot.getX(), robot.getY()));
+			double dis2=Utilities.getDistance(nextStop, new Point2D.Double(robot.getX() , robot.getY()));
+			if(dis2<=dis)
+				goAntiGravity(nextStop);
+			else
+				finishingMove(destination);
 		}
 		
 	}
@@ -116,7 +121,7 @@ public class MovementManager extends AbstractManager {
 		this.destination=destination;
 		
 		
-		System.out.println("about to print the final map : "+destination);
+		
 		
 		
 		int x=(int) Math.round(robot.getX()/MAP_LARGE_BLOCK_SIZE);
@@ -125,9 +130,11 @@ public class MovementManager extends AbstractManager {
 		int yf=(int) Math.round(destination.getY()/MAP_LARGE_BLOCK_SIZE);
 		
 		//this.toMove=reachedDestination();
-		System.out.println("Current Locationsdfsdf : "+(robot==null));
+		System.out.println("Destination : "+xf+" , "+yf);
 		System.out.println("Current Location : "+x+" , "+y);
 		
+		
+		System.out.println("about to print the final map : "+destination);
 		dij.printMap(smallMap);
 		
 		return smallMap;

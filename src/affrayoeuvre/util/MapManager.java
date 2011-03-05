@@ -101,7 +101,7 @@ public class MapManager extends AbstractManager implements Constants {
 	}
 	
 	private void handleFlagTypeEvent(ScannedObjectEvent e) {
-		markMap(e, FLAG);
+		//markMap(e, FLAG);
 		seenTheFlag(e);
 	}
 	
@@ -189,6 +189,9 @@ public class MapManager extends AbstractManager implements Constants {
 		int xSmallInd=(int) Math.round(x/MAP_LARGE_BLOCK_SIZE);
 		int ySmallInd=(int) Math.round(y/MAP_LARGE_BLOCK_SIZE);
 		
+		if(!isInsideBounds(x, y) || !isSmallMapInside(xSmallInd, ySmallInd))
+			return;
+		
 		//all the nodes with value above that of the BASE will be of blocking nature .
 		if(val>BASE){
 			
@@ -216,6 +219,9 @@ public class MapManager extends AbstractManager implements Constants {
 	}
 	
 	public void markMap(double x , double y , int val){
+		
+		if(!isInsideBounds(x, y))
+			return;
 		
 		int xInd=(int) Math.round(x/MAP_SMALL_BLOCK_SIZE);
 		int yInd=(int) Math.round(y/MAP_SMALL_BLOCK_SIZE);
